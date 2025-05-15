@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME PORTAL 🎮</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="stars"></canvas>
+    
+    
+    <div class="intro-screen" id="introScreen">
+        <div class="intro-content">
+            <div class="game-title">
+                <h1>GAME PORTAL</h1>
+                <div class="subtitle">Oyun Dünyasına Açılan Kapı</div>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="start-button" onclick="startGame()">
+                <span>BAŞLA</span>
+                <div class="button-glow"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-content" id="mainContent" style="display: none;">
+        <nav class="navbar">
+            <div class="nav-brand">🎮 GAME PORTAL</div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Oyun ara...">
+                <select id="filterSelect">
+                    <option value="all">Tüm Oyunlar</option>
+                    <option value="platform">Platform</option>
+                    <option value="arcade">Arcade</option>
+                    <option value="rpg">RPG</option>
+                </select>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="card-grid">
+
+                <div class="card" data-category="platform" onclick="openModal('https://www.youtube.com/embed/PAxkBaUyMJ0', 'mario')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://www.gamereactor.com.tr/media/27/supermariorpg_4142723b.jpg" alt="Mario">
+                            <div class="card-info">
+                                <h2>Super Mario</h2>
+                                <p>Platform · 1985</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Oyun Detayları</h3>
+                            <p>Nintendo'nun efsane platform oyunu</p>
+                            <ul>
+                                <li>Klasik platform mekanikleri</li>
+                                <li>8-bit grafikler</li>
+                                <li>Efsanevi müzikler</li>
+                            </ul>
+                            <button class="buy-btn">Satın Al</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="arcade" onclick="openModal('https://www.youtube.com/embed/1cJFpHWfX5M', 'pacman')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://f4.bcbits.com/img/a3530265444_16.jpg">
+                            <div class="card-info">
+                                <h2>Pac-Man</h2>
+                                <p>Arcade · 1980</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Oyun Detayları</h3>
+                            <p>Arcade klasiklerinin kralı</p>
+                            <ul>
+                                <li>Basit ama bağımlılık yapıcı</li>
+                                <li>Klasik arcade deneyimi</li>
+                                <li>Çok oyunculu mod</li>
+                            </ul>
+                            <button class="buy-btn">Satın Al</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="card" data-category="rpg" onclick="openModal('https://www.youtube.com/embed/8X2kIfS6fb8', 'cyberpunk')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077">
+                            <div class="card-info">
+                                <h2>Cyberpunk 2077</h2>
+                                <p>RPG · 2020</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Oyun Detayları</h3>
+                            <p>Gelecekte geçen açık dünya RPG oyunu</p>
+                            <ul>
+                                <li>Detaylı karakter özelleştirme</li>
+                                <li>Futuristik silahlar ve yetenekler</li>
+                                <li>Karmaşık hikaye seçimleri</li>
+                            </ul>
+                            <button class="buy-btn">Satın Al</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="platform" onclick="openModal('https://www.youtube.com/embed/UAO2urG23S4', 'hollowknight')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/367520/header.jpg" alt="Hollow Knight">
+                            <div class="card-info">
+                                <h2>Hollow Knight</h2>
+                                <p>Platform · 2017</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Oyun Detayları</h3>
+                            <p>Muhteşem bir metroidvania deneyimi</p>
+                            <ul>
+                                <li>Zorlu platform mekanikleri</li>
+                                <li>Güzel sanat tasarımı</li>
+                                <li>Geniş keşif alanları</li>
+                            </ul>
+                            <button class="buy-btn">Satın Al</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="rpg" onclick="openModal('https://www.youtube.com/embed/F63h3v9QV7w', 'rdr2')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2">
+                            <div class="card-info">
+                                <h2>Red Dead Redemption 2</h2>
+                                <p>RPG · 2018</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Oyun Detayları</h3>
+                            <p>Vahşi Batı'nın son günlerinde geçen epik bir macera</p>
+                            <ul>
+                                <li>Geniş açık dünya</li>
+                                <li>Gerçekçi karakter etkileşimleri</li>
+                                <li>Zengin hikaye anlatımı</li>
+                            </ul>
+                            <button class="buy-btn">Satın Al</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="rpg" onclick="openModal('https://www.youtube.com/embed/c0i88t0Kacs', 'witcher')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg" alt="The Witcher 3">
+                            <div class="card-info">
+                                <h2>The Witcher 3</h2>
+                                <p>RPG · 2015</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Oyun Detayları</h3>
+                            <p>Fantastik dünyada geçen epik bir macera</p>
+                            <ul>
+                                <li>Geniş açık dünya</li>
+                                <li>Karmaşık hikaye seçimleri</li>
+                                <li>Zorlu savaş sistemi</li>
+                            </ul>
+                            <button class="buy-btn">Satın Al</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="rpg" onclick="openModal('https://www.youtube.com/embed/EE-4GvjKcfs', 'godofwar')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg" alt="God of War">
+                            <div class="card-info">
+                                <h2>God of War Ragnarök</h2>
+                                <p>RPG · 2022</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Oyun Detayları</h3>
+                            <p>Kratos ve Atreus'un epik macerası</p>
+                            <ul>
+                                <li>Epik savaş sistemi</li>
+                                <li>Etkileyici hikaye</li>
+                                <li>Görsel şölen</li>
+                            </ul>
+                            <button class="buy-btn">Satın Al</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-category="rpg" onclick="openModal('https://www.youtube.com/embed/E3Huy2cdih0', 'eldenring')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring">
+                            <div class="card-info">
+                                <h2>Elden Ring</h2>
+                                <p>RPG · 2022</p>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Oyun Detayları</h3>
+                            <p>FromSoftware'nin epik açık dünya oyunu</p>
+                            <ul>
+                                <li>Zorlu savaş sistemi</li>
+                                <li>Geniş açık dünya</li>
+                                <li>Boss savaşları</li>
+                            </ul>
+                            <button class="buy-btn">Satın Al</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <iframe id="trailer" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+                <div class="game-details">
+                    <div class="game-info">
+                        <h3>Oyun Bilgileri</h3>
+                        <p id="gameDescription"></p>
+                    </div>
+                    <div class="game-features">
+                        <h3>Özellikler</h3>
+                        <ul id="gameFeatures"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hakkımızda</h3>
+                <p>GAME PORTAL, oyun dünyasına açılan kapınız olarak, en yeni ve popüler oyunları sizlere sunan dijital oyun mağazasıdır.</p>
+            </div>
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <p>Email: hamzaerenyalcin41@gmail.com</p>
+                <p>Tel: +90 551 100 4024</p>
+            </div>
+            <div class="footer-section">
+                <h3>Sosyal Medya</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/hamza-eren-9508a827b/"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
